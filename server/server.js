@@ -23,7 +23,7 @@ app.post('/', async (req, res) => {
   try {
     const prompt = req.body.prompt;
 
-    const response = await openai.completions.create({
+    const response = await openai.createCompletion({
       model: 'gpt-3.5-turbo-0125',
       prompt: `${prompt}`,
       temperature: 0,
@@ -34,7 +34,7 @@ app.post('/', async (req, res) => {
     });
 
     res.status(200).send({
-      bot: response.choices[0].text,
+      bot: response.data.choices[0].text,
     });
   } catch (error) {
     console.log(error);
